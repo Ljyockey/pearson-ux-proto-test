@@ -6,7 +6,7 @@ const getIfMultipleOf = (target, value) => value % target === 0 ? ` ${target} MU
 
 const makeAList = size => {
   const ul = document.createElement('ul');
-  for (let i = 0; i < size; i ++) {
+  for (let i = 1; i <= size; i ++) {
     const element = document.createElement('li');
     element.id = `list-item--${i}`;
     element.innerText = `${getOddOrEven(i)}${getIfMultipleOf(3, i)}${getIfMultipleOf(5, i)}`;
@@ -15,4 +15,4 @@ const makeAList = size => {
   document.getElementById('list').appendChild(ul);
 };
 
-module.exports = makeAList;
+makeAList(100);
