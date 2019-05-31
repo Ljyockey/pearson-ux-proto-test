@@ -1,11 +1,11 @@
 'use strict';
 
-const transformNums = (num) => {
-  const sortedNum = num.sort();
+const transformNums = (nums) => {
+  const sortedNums = nums.sort();
   return [
-    sortedNum,
-    sortedNum.reverse(),
-    sortedNum
+    ...sortedNums,
+    ...sortedNums.reverse(),
+    ...sortedNums.reverse()
   ];
 };
 
