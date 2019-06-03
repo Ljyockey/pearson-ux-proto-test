@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Header from './components/Header.jsx'
 
 export default class App extends Component {
     constructor(props) {
@@ -6,7 +7,7 @@ export default class App extends Component {
     }
     render() {
         return (
-            <div>Hello, World!</div>
+            <Header accountName='Casey' />
         )
     }
 }
