@@ -21,11 +21,13 @@ export default class App extends Component {
         return (
             <section>
                 <Header accountName='Casey' />
-                <QuizTitle
-                    title={title}
-                    totalPoints={totalPoints}
-                    dueDate={{start: dueDateStart, end: dueDateEnd}}
-                />
+                <main role="main">
+                    <QuizTitle
+                        title={title}
+                        totalPoints={totalPoints}
+                        dueDate={{start: dueDateStart, end: dueDateEnd}}
+                    />
+                </main>
             </section>
         )
     }
