@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Header (props) {
     return (
-        <header role="banner" class="c-header-root">
+        <header role="banner" className="c-header-root">
             <nav role="navigation">
                 <ul>
                     <li>
