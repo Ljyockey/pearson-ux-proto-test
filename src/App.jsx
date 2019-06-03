@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import Header from './components/Header.jsx'
-import QuizTitle from './components/QuizTitle.jsx'
+import Header from './components/Header'
+import QuizTitle from './components/QuizTitle'
+import QuizDescription from './components/QuizDescription'
 
 export default class App extends Component {
     constructor(props) {
@@ -26,6 +27,10 @@ export default class App extends Component {
                         title={title}
                         totalPoints={totalPoints}
                         dueDate={{start: dueDateStart, end: dueDateEnd}}
+                    />
+                    <QuizDescription
+                        learningObjectiveText={learningObjective}
+                        descriptionText={description}
                     />
                 </main>
             </section>
