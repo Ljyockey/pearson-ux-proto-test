@@ -1,5 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function Dropdown (props) {
-    return <p className={"justify-flex-end"}>'Hello World'</p>
+  return <p className={'justify-flex-end'}>'Hello World'</p>;
 }

@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-import './scss/App.scss'
+import './scss/App.scss';
 
-ReactDOM.render(<App />, document.getElementById('index'))
+ReactDOM.render(<App />, document.getElementById('index'));
