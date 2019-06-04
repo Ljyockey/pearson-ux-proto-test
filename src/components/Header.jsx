@@ -6,13 +6,13 @@ export default function Header (props) {
             <nav role="navigation">
                 <ul>
                     <li>
-                        <a href="#"><img src="./foo.jpg" alt="Pearson" /></a>
+                        <a href="#"><img src={"public/img/pearson-logo.png"} alt="Pearson" /></a>
                     </li>
                     <li>
-                        <a href="#"><img src="./foo.jpg" alt="Notifications" /></a>
+                        <a href="#"><img className={"icon"} src="public/img/notification.svg" alt="Notifications" /></a>
                     </li>
                     <li>
-                        <a href="#"><img src="./foo.jpg" alt="Help" /></a>
+                        <a href="#"><img className={"icon"} src="public/img/help.svg" alt="Help" /></a>
                     </li>
                     <li>
                         <a href="#">{props.accountName}</a>

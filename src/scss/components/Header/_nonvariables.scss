@@ -1,12 +1,18 @@
 .c-header-root {
     background: $header-background-color;
 
+    nav {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
     ul {
         margin: 0;
         height: 75px;
         display: flex;
         align-items: center;
         list-style-type: none;
+        padding-left: 0;
 
 
         li {
@@ -14,8 +20,16 @@
                 flex: 1;
             }
 
+            &:not(:first-child) {
+                margin-left: 20px;
+            }
+
             a {
-                color: #6a7070;
+                color: $header-color;
+
+                .icon {
+                    height: 20px;
+                }
             }
         }
     }
