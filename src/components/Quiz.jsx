@@ -22,11 +22,14 @@ export default class Quiz extends React.Component {
     render () {
         return (
             <section className={'c-quiz--root'}>
-                {this.state.currentQuestionIndex &&
+                {this.state.hasQuizStarted &&
                     <Dropdown
                         totalQuestions={this.props.questions.length}
                         onQuestionChange={this.onQuestionChange}
                     />
+                }
+                {this.state.hasQuizStarted &&
+                    <p>Worth {this.props.questions[this.state.currentQuestionIndex].points} point{this.props.questions[this.state.currentQuestionIndex].points === 1 ? '' : 's'}</p>
                 }
                 <div className={'quiz-flex-container'}>
                     <video controls src={this.props.videoSrc}></video>

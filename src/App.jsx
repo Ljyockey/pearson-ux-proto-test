@@ -19,6 +19,7 @@ export default class App extends Component {
                 questions: [
                     {
                         timeInSeconds: 5,
+                        points: 1,
                         correctAnswerIndex: 2,
                         question: 'What is the best way to feel more physically comfortable when delivering a speech?',
                         options: [
@@ -30,6 +31,7 @@ export default class App extends Component {
                     },
                     {
                         timeInSeconds: 10,
+                        points: 3,
                         correctAnswerIndex: 3,
                         question: 'Why is it important to have good posture?',
                         options: [
@@ -41,6 +43,7 @@ export default class App extends Component {
                     },
                     {
                         timeInSeconds: 15,
+                        points: 3,
                         correctAnswerIndex: 0,
                         question: 'How does standing with your feet shoulder width apart help you have a better delivery?',
                         options: [
@@ -52,6 +55,7 @@ export default class App extends Component {
                     },
                     {
                         timeInSeconds: 20,
+                        points: 1,
                         correctAnswerIndex: 3,
                         question: 'Why are gestures an important delivery skill to learn?',
                         options: [
@@ -63,6 +67,7 @@ export default class App extends Component {
                     },
                     {
                         timeInSeconds: 25,
+                        points: 3,
                         correctAnswerIndex: 3,
                         question: 'What is the outcome of learning correct posture, body movement, and gestures?',
                         options: [
