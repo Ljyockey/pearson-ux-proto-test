@@ -6,3 +6,27 @@
     display: flex;
     align-items: center;
 }
+
+.c-quizform--root {
+    fieldset {
+        margin: 0;
+        padding: 0;
+        border: 0;
+
+        legend {
+            background: $secondary-background-color;
+            padding: 10px;
+        }
+
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .form-submit {
+        &--disabled {
+            display: none;
+        }
+    }
+}

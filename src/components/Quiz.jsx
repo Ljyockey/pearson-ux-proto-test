@@ -7,7 +7,8 @@ export default class Quiz extends React.Component {
         super(props)
         this.state = {
             currentQuestionIndex: null,
-            hasQuizStarted: false
+            hasQuizStarted: false,
+            hasQuizCompleted: false
         }
 
         this.onVideoPlaying = this.onVideoPlaying.bind(this)
@@ -48,6 +49,7 @@ export default class Quiz extends React.Component {
                         onFormSubmit={this.onFormSubmit}
                         currentQuestion={this.props.questions[this.state.currentQuestionIndex]}
                         questionNumber={this.state.currentQuestionIndex ? this.state.currentQuestionIndex + 1 : null}
+                        buttonText={this.state.hasQuizCompleted ? 'Submit Quiz' : 'Resume'}
                     />
                 </div>
             </section>
