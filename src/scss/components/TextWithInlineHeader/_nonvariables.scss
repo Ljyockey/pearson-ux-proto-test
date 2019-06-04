@@ -1,11 +1,14 @@
 .c-text-with-inline-header--root {
 
+    margin-bottom: 10px;
+
     h1, h2, h3, h4, h5, h6 {
         font-size: 16px;
         display: inline-block;
+        margin-bottom: 0;
     }
 
     p {
-        display: inline-block;
+        display: inline;
     }
 }
