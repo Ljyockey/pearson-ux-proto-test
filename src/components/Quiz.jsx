@@ -6,9 +6,11 @@ export default class Quiz extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            hasQuizStarted: false,
-            currentQuestionIndex: null
+            currentQuestionIndex: null,
+            hasQuizStarted: false
         }
+
+        this.onVideoPlaying = this.onVideoPlaying.bind(this)
     }
 
     onFormSubmit (event) {
@@ -19,20 +21,29 @@ export default class Quiz extends React.Component {
         console.log('onQuestionChange event: ', event)
     }
 
+    onVideoPlaying (event) {
+        if (!this.state.currentQuestionIndex) {
+            this.setState({
+                currentQuestionIndex: 0,
+                hasQuizStarted: true
+            })
+        }
+    }
+
     render () {
         return (
             <section className={'c-quiz--root'}>
                 {this.state.hasQuizStarted &&
-                    <Dropdown
-                        totalQuestions={this.props.questions.length}
-                        onQuestionChange={this.onQuestionChange}
-                    />
-                }
-                {this.state.hasQuizStarted &&
-                    <p>Worth {this.props.questions[this.state.currentQuestionIndex].points} point{this.props.questions[this.state.currentQuestionIndex].points === 1 ? '' : 's'}</p>
+                    <div className={"quiz-dropdown-container"}>
+                        <Dropdown
+                            totalQuestions={this.props.questions.length}
+                            onQuestionChange={this.onQuestionChange}
+                        />
+                        <p className="justify-flex-end">Worth {this.props.questions[this.state.currentQuestionIndex].points} point{this.props.questions[this.state.currentQuestionIndex].points === 1 ? '' : 's'}</p>
+                    </div>
                 }
                 <div className={'quiz-flex-container'}>
-                    <video controls src={this.props.videoSrc}></video>
+                    <video onPlaying={this.onVideoPlaying} controls src={this.props.videoSrc}></video>
                     <QuizForm
                         onFormSubmit={this.onFormSubmit}
                         currentQuestion={this.props.questions[this.state.currentQuestionIndex]}
