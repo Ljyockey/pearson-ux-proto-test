@@ -1,0 +1,14 @@
+.c-quiz--root {
+    .quiz-flex-container {
+        display: flex;
+
+        &>* {
+            flex-basis: 0;
+            flex: 1;
+        }
+
+        video {
+            height: 300px;
+        }
+    }
+}
