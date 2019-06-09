@@ -1,13 +1,15 @@
 import React from 'react';
 import Header from './components/Header';
-import QuizTitle from './components/QuizTitle';
-import QuizDescription from './components/QuizDescription';
+import QuizInfo from './components/QuizInfo';
+import QuizResults from './components/QuizResults';
 import Quiz from './components/Quiz';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      correctAnswers: null,
+      isQuizCompleted: false,
       data: {
         title: 'Learning The Keys To Physical Delivery Skills',
         totalPoints: 15,
@@ -80,10 +82,25 @@ export default class App extends React.Component {
         ]
       }
     };
+
+    this.onQuizCompletion = this.onQuizCompletion.bind(this);
   }
 
   onQuizCompletion (answers) {
-    console.log('onQuizCompletion', answers);
+    const isQuizCompleted = !!answers.filter(Boolean).length;
+    if (isQuizCompleted) {
+      this.setState({isQuizCompleted: true, correctAnswers: this.getCorrectAnswers(answers)});
+    }
+
+  }
+
+  getCorrectAnswers (answers) {
+    let totalCorrect = 0;
+    const questions = this.state.data.questions;
+    answers.forEach((answer, index) => {
+      if (questions[index].correctAnswerIndex === answer) totalCorrect++;
+    });
+    return totalCorrect;
   }
 
   render() {
@@ -92,15 +109,17 @@ export default class App extends React.Component {
       <section>
         <Header accountName='Casey' />
         <main role="main">
-          <QuizTitle
-            title={title}
-            totalPoints={totalPoints}
-            dueDate={{start: dueDateStart, end: dueDateEnd}}
-          />
-          <QuizDescription
-            learningObjectiveText={learningObjective}
-            descriptionText={description}
-          />
+          {this.state.isQuizCompleted ?
+            <QuizResults totalQuestions={this.state.data.questions.length} totalCorrect={this.state.correctAnswers} />
+            :
+            <QuizInfo
+              title={title}
+              totalPoints={totalPoints}
+              dueDate={{start: dueDateStart, end: dueDateEnd}} 
+              learningObjective={learningObjective}
+              description={description}
+            />
+          }
           <Quiz videoSrc={videoSrc} questions={questions} onQuizCompletion={this.onQuizCompletion}  />
         </main>
       </section>
