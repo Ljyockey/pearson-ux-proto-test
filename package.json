@@ -36,10 +36,10 @@
     "type": "git",
     "url": "git+https://github.com/Ljyockey/pearson-ux-proto-test.git"
   },
-  "author": "",
+  "author": "Leo Yockey",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Ljyockey/pearson-ux-proto-test/issues"
   },
-  "homepage": "https://github.com/Ljyockey/pearson-ux-proto-test#readme"
+  "homepage": "https://ljyockey.github.io/pearson-ux-proto-test"
 }
