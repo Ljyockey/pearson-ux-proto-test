@@ -8,7 +8,6 @@ export default class Quiz extends React.Component {
     this.state = {
       currentQuestionIndex: null,
       hasQuizStarted: false,
-      hasQuizCompleted: false,
       answerIndexes: new Array(this.props.questions.length)
     };
 
@@ -17,8 +16,10 @@ export default class Quiz extends React.Component {
   }
 
   onFormSubmit (event) {
-    event.preventDefault();
-    const selectedAnswerIndex = parseInt(event.currentTarget.querySelector('input:checked').id);
+    const targetInput = event.currentTarget.querySelector('input:checked');
+    const selectedAnswerIndex = parseInt(targetInput.id);
+    targetInput.checked = false;
+
     const answerIndexes = this.state.answerIndexes;
     this.setState({
       answerIndexes: [
@@ -67,7 +68,7 @@ export default class Quiz extends React.Component {
             onFormSubmit={this.onFormSubmit}
             currentQuestion={this.props.questions[this.state.currentQuestionIndex]}
             questionNumber={this.state.currentQuestionIndex ? this.state.currentQuestionIndex + 1 : null}
-            buttonText={this.state.hasQuizCompleted ? 'Submit Quiz' : 'Resume'}
+            buttonText={this.state.currentQuestionIndex && this.state.currentQuestionIndex === this.props.questions.length - 1 ? 'Submit Quiz' : 'Resume'}
           />
         </div>
       </section>

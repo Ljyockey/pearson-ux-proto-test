@@ -8,6 +8,7 @@ export default class QuizForm extends React.Component {
     };
 
     this.onRadioChange = this.onRadioChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   getVideoTime (timeInSeconds) {
@@ -22,11 +23,19 @@ export default class QuizForm extends React.Component {
     }
   }
 
+  onFormSubmit (event) {
+    event.preventDefault();
+    this.setState({
+      isAnswerSelected: false
+    });
+    this.props.onFormSubmit(event);
+  }
+
   render () {
-    const {currentQuestion, buttonText, onFormSubmit, questionNumber} = this.props;
+    const {currentQuestion, buttonText, questionNumber} = this.props;
     if (currentQuestion) {
       return (
-        <form className={'c-quizform--root'} onSubmit={onFormSubmit}>
+        <form className={'c-quizform--root'} onSubmit={this.onFormSubmit}>
           <fieldset>
             <legend>{currentQuestion.question}</legend>
 
