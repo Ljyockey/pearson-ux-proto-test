@@ -1,7 +1,7 @@
 {
   "name": "pearson-ux-proto-test",
   "version": "0.0.0",
-  "description": "-   [Train Wreck!](./train-wreck/index.html)",
+  "description": "Pearson UX Prototyping Test",
   "main": "makeAList.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
