@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './components/Header';
 import QuizTitle from './components/QuizTitle';
 import QuizDescription from './components/QuizDescription';
 import Quiz from './components/Quiz';
 
-export default class App extends Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -81,6 +81,11 @@ export default class App extends Component {
       }
     };
   }
+
+  onQuizCompletion (answers) {
+    console.log('onQuizCompletion', answers);
+  }
+
   render() {
     const {data: {title, totalPoints, dueDateStart, dueDateEnd, learningObjective, description, videoSrc, questions}} = this.state;
     return (
@@ -96,7 +101,7 @@ export default class App extends Component {
             learningObjectiveText={learningObjective}
             descriptionText={description}
           />
-          <Quiz videoSrc={videoSrc} questions={questions}  />
+          <Quiz videoSrc={videoSrc} questions={questions} onQuizCompletion={this.onQuizCompletion}  />
         </main>
       </section>
     );

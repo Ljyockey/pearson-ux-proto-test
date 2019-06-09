@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import QuizForm from './QuizForm';
 import Dropdown from './Dropdown';
 
@@ -8,14 +8,32 @@ export default class Quiz extends React.Component {
     this.state = {
       currentQuestionIndex: null,
       hasQuizStarted: false,
-      hasQuizCompleted: false
+      hasQuizCompleted: false,
+      answerIndexes: new Array(this.props.questions.length)
     };
 
     this.onVideoPlaying = this.onVideoPlaying.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onFormSubmit (event) {
-    console.log('onFormSubmit event: ', event);
+    event.preventDefault();
+    const selectedAnswerIndex = parseInt(event.currentTarget.querySelector('input:checked').id);
+    const answerIndexes = this.state.answerIndexes;
+    this.setState({
+      answerIndexes: [
+        ...answerIndexes.slice(0, this.state.currentQuestionIndex),
+        selectedAnswerIndex,
+        ...answerIndexes.slice(this.state.currentQuestionIndex + 1)
+      ]
+    }, () => {
+      if (this.state.currentQuestionIndex === this.props.questions.length - 1) {
+        this.props.onQuizCompletion(this.state.answerIndexes);
+      } else this.setState({
+        currentQuestionIndex: this.state.currentQuestionIndex + 1
+      });
+    });
+
   }
 
   onQuestionChange (event) {
