@@ -54,7 +54,9 @@ export default class QuizForm extends React.Component {
               </label>
             </div>
           </fieldset>
-          <input value={buttonText} type="submit" disabled={!this.state.isAnswerSelected} className={`form-submit${this.state.isAnswerSelected ? '' : '--disabled'}`} />
+          <div className={'submit-container'}>
+            <input value={buttonText} type="submit" disabled={!this.state.isAnswerSelected} className={`form-submit${this.state.isAnswerSelected ? '' : '--disabled'}`} />
+          </div>
         </form>
       );
     }

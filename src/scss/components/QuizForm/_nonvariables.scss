@@ -8,6 +8,9 @@
 }
 
 .c-quizform--root {
+    border-bottom: 2px solid $border-color;
+    border-right: 2px solid $border-color;
+
     fieldset {
         margin: 0;
         padding: 0;
@@ -15,16 +18,32 @@
 
         legend {
             background: $secondary-background-color;
-            padding: 10px;
+            padding: 10px 0 10px 10px;
+            margin-right: -2px;
+            width: 100%;
+        }
+
+        p {
+            padding-left: 10px;
         }
 
         .answer-options {
             display: flex;
             flex-direction: column;
+            padding: 10px;
         }
+    }
+    .submit-container {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px;
     }
 
     .form-submit {
+        background-color: $pearson-green;
+        color: #eee;
+        font-size: 16px;
+
         &--disabled {
             display: none;
         }
