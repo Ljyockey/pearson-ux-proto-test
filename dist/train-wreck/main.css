@@ -1,0 +1,57 @@
+fieldset {
+    border: none;
+}
+
+legend {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+}
+
+label {
+    flex: 1;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.text-input {
+    width: 50%;
+    height: 25px;
+    border: 2px solid#dce4ee;
+    border-radius: 5%;
+}
+
+#submit {
+    background: #f39c10;
+    color: #eee;
+    height: 30px;
+    border-radius: 5%;
+}
+
+.result-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+.train-result {
+    height: 10px;
+}
+
+#smash {
+    position: absolute;
+    left: calc(25% - 30px);
+    bottom: 10px;
+}
+
+.train-result--train-a {
+    background: #18bc9c;
+    width: 25%;
+}
+
+.train-result--train-b {
+    background: #f39c10;
+    flex: 1;
+}
