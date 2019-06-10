@@ -2,6 +2,10 @@
 - [Live](https://ljyockey.github.io/pearson-ux-proto-test/static/index.html)
 - [Directory](./static)
 
+## Part I - SASS
+- [Live](https://ljyockey.github.io/pearson-ux-proto-test/sass-mixin-test/index.html)
+- [Directory](./src/sass-mixin-test)
+
 ## Part III - JavaScript
 - [transformNums](./static/javascript/transformNums.js)
 - [makeAList](./static/javascript/makeAList.js)

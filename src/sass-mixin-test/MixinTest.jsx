@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../scss/components/MixinTest/MixinTest.scss';
+import './scss/MixinTest.scss';
 
 export default function MixinTest () {
   return (

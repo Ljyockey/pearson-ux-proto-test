@@ -3,10 +3,11 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const htmlPlugin = new HtmlWebPackPlugin({
-  template: './src/index.html',
-  filename: './index.html'
-});
+const mainHtmlPlugin = new HtmlWebPackPlugin(
+  {template: './src/index.html', filename: './index.html', chunks: ['main']});
+
+const mixinTestHtmlPlugin = new HtmlWebPackPlugin(
+  {template: './src/sass-mixin-test/index.html', filename: './sass-mixin-test/index.html', chunks: ['sass']});  
 
 const copyPlugin = new CopyWebpackPlugin([
   {from: 'public', to: 'public'},
@@ -35,8 +36,12 @@ module.exports = {
       }
     ]
   },
+  entry: {
+    main: './src/index.js',
+    sass: './src/sass-mixin-test/index.js'
+  },
   resolve: {
     extensions: ['.js', '.jsx']
   },
-  plugins: [htmlPlugin, copyPlugin]
+  plugins: [mainHtmlPlugin, mixinTestHtmlPlugin, copyPlugin]
 };
