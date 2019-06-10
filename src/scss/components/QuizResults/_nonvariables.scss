@@ -1,0 +1,51 @@
+.c-quizresults--root {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .svg-container {
+    display: flex;
+    align-items: center;
+
+    .svg-score {
+      height: 150px;
+
+      .wrong {
+        stroke: orange;
+      }
+  
+      .correct {
+        stroke: $pearson-green;
+      }
+
+      text {
+        fill: $pearson-green;
+      }
+    }
+
+    p {
+      font-size: 2em;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    color: #8b9090;
+  }
+
+  li {
+    &:not(:last-child):not(:first-child) {
+      &::before {
+        content: '\00a0 / '
+      }
+    }
+
+    &:last-child {
+      &::before {
+        content: '\00a0 - '
+      }
+    }
+  }
+}
