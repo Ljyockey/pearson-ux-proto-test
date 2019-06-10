@@ -1,5 +1,5 @@
 ## Part I - HTML
-- [Page](./static/index.html)
+- [Live](https://ljyockey.github.io/pearson-ux-proto-test/static/index.html)
 - [Directory](./static)
 
 ## Part III - JavaScript
@@ -8,8 +8,12 @@
 
 ## Part IV - Prototyping
 - Train Wreck
-    - [Page](./static/train-wreck/index.html)
+    - [Live](https://ljyockey.github.io/pearson-ux-proto-test/static/train-wreck/index.html)
     - [Directory](./static/train-wreck)
+
+- Video Quiz
+    - [Live](https://ljyockey.github.io/pearson-ux-proto-test)
+    - [Directory](./src)    
 
 ## Bonus:
 - My [Debugged XMLHTTPRequest](https://jsfiddle.net/ljyockey/69ru4bsh/31/) jsfiddle.
