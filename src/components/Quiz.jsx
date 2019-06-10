@@ -1,6 +1,7 @@
 import React from 'react';
 import QuizForm from './QuizForm';
 import Dropdown from './Dropdown';
+import Accordion from './Accordion';
 
 export default class Quiz extends React.Component {
   constructor(props) {
@@ -8,6 +9,7 @@ export default class Quiz extends React.Component {
     this.state = {
       currentQuestionIndex: null,
       hasQuizStarted: false,
+      hasQuizFinished: false,
       answerIndexes: new Array(this.props.questions.length)
     };
 
@@ -29,16 +31,13 @@ export default class Quiz extends React.Component {
       ]
     }, () => {
       if (this.state.currentQuestionIndex === this.props.questions.length - 1) {
+        this.setState({hasQuizFinished: true});
         this.props.onQuizCompletion(this.state.answerIndexes);
       } else this.setState({
         currentQuestionIndex: this.state.currentQuestionIndex + 1
       });
     });
 
-  }
-
-  onQuestionChange (event) {
-    console.log('onQuestionChange event: ', event);
   }
 
   onVideoPlaying (event) {
@@ -53,7 +52,7 @@ export default class Quiz extends React.Component {
   render () {
     return (
       <section className={'c-quiz--root'}>
-        {this.state.hasQuizStarted &&
+        {this.state.hasQuizStarted && !this.state.hasQuizFinished &&
                     <div className={'quiz-dropdown-container'}>
                       <Dropdown
                         totalQuestions={this.props.questions.length}
@@ -64,12 +63,15 @@ export default class Quiz extends React.Component {
         }
         <div className={'quiz-flex-container'}>
           <video onPlaying={this.onVideoPlaying} controls src={this.props.videoSrc}></video>
-          <QuizForm
-            onFormSubmit={this.onFormSubmit}
-            currentQuestion={this.props.questions[this.state.currentQuestionIndex]}
-            questionNumber={this.state.currentQuestionIndex ? this.state.currentQuestionIndex + 1 : null}
-            buttonText={this.state.currentQuestionIndex && this.state.currentQuestionIndex === this.props.questions.length - 1 ? 'Submit Quiz' : 'Resume'}
-          />
+          {this.state.hasQuizFinished
+            ? <Accordion questions={this.props.questions} answers={this.state.answerIndexes} />
+            : <QuizForm
+              onFormSubmit={this.onFormSubmit}
+              currentQuestion={this.props.questions[this.state.currentQuestionIndex]}
+              questionNumber={this.state.currentQuestionIndex ? this.state.currentQuestionIndex + 1 : null}
+              buttonText={this.state.currentQuestionIndex && this.state.currentQuestionIndex === this.props.questions.length - 1 ? 'Submit Quiz' : 'Resume'}
+            />
+          }
         </div>
       </section>
     );
