@@ -1,0 +1,9 @@
+$colors: red orange yellow green blue purple black brown chartreuse;
+
+@mixin color-list {
+  @for $i from 1 through length($colors) {
+    &:nth-child(#{$i}) {
+      color: nth($colors, $i)
+    }
+  }
+}
