@@ -87,8 +87,8 @@ export default class App extends React.Component {
   }
 
   onQuizCompletion (answers) {
-    const isQuizCompleted = !!answers.filter(Boolean).length;
-    if (isQuizCompleted) {
+    const answeredQuestions = answers.filter(a => Boolean(a) || a === 0).length;
+    if (answeredQuestions === this.state.data.questions.length) {
       this.setState({isQuizCompleted: true, correctAnswers: this.getCorrectAnswers(answers)});
     }
 
