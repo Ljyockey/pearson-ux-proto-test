@@ -15,6 +15,7 @@ export default class Quiz extends React.Component {
 
     this.onVideoPlaying = this.onVideoPlaying.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onQuestionChange = this.onQuestionChange.bind(this);
   }
 
   onFormSubmit (event) {
@@ -49,14 +50,21 @@ export default class Quiz extends React.Component {
     }
   }
 
+  onQuestionChange (index) {
+    this.setState({
+      currentQuestionIndex: index
+    });
+  }
+
   render () {
     return (
       <section className={'c-quiz--root'}>
         {this.state.hasQuizStarted && !this.state.hasQuizFinished &&
                     <div className={'quiz-dropdown-container'}>
                       <Dropdown
-                        totalQuestions={this.props.questions.length}
                         onQuestionChange={this.onQuestionChange}
+                        answerIndexes={this.state.answerIndexes}
+                        currentQuestionIndex={this.state.currentQuestionIndex}
                       />
                       <p className="justify-flex-end">Worth {this.props.questions[this.state.currentQuestionIndex].points} point{this.props.questions[this.state.currentQuestionIndex].points === 1 ? '' : 's'}</p>
                     </div>
