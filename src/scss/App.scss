@@ -33,7 +33,7 @@ button {
     cursor: pointer;
 }
 
-.form-submit {
+.form-submit-modal {
     width: 50%;
     .header {
         padding-top: 0;
@@ -53,15 +53,24 @@ button {
             margin: 0;
         }
     }
+
+    &--root {
+        position: absolute;
+    }
 }
 
 #form-submit-success {
-    @include submit-modal-theme (green)
+    @include submit-modal-theme (green);
+    top: 10px;
+    left: 60px;
 
 }
 
 #form-submit-error {
-    @include submit-modal-theme (red)
+    @include submit-modal-theme (red);
+    top: 0;
+    left: 70px;
+    width: 60%;
 }
 
 .form-confirmation {
@@ -80,7 +89,7 @@ button {
     &--root {
         position: absolute;
         top: 20%;
-        left: 20%;
+        left: 30%;
         z-index: 2;
 
         .header {
