@@ -122,11 +122,29 @@ export default class App extends React.Component {
             />
           }
           <QuizModal
+            className={'form-submit form-submit--error'}
+            title={'Error'}
+            onCloseCallback={e => {
+              e.preventDefault();
+              console.log('error onCloseCallback');
+            }}
+            message={'Please answer all the questions before submitting the quiz.'}
+          />
+          <QuizModal
+            className={'form-submit form-submit--success'}
+            title={'Success'}
+            onCloseCallback={e => {
+              e.preventDefault();
+              console.log('success onCloseCallback');
+            }}
+            message={'Success! You\'ve successfully submitted your quiz'}
+          />
+          <QuizModal
             className={'form-confirmation'}
             title={'Submit Quiz'}
             onCloseCallback={e => {
               e.preventDefault();
-              console.log('onCloseCallback');
+              console.log('confirmation onCloseCallback');
             }}
             message={'Are you sure you\'re ready to submit? You won\'t be able to change your answers.'}
             cancelButton={{

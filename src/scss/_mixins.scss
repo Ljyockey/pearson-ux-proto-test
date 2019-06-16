@@ -1,0 +1,6 @@
+@mixin submit-modal-theme ($themecolor) {
+  border-top: 5px solid $themecolor;
+  .title {
+    color: $themecolor;
+  }
+}

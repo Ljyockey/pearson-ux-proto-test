@@ -1,4 +1,5 @@
 @import './variables';
+@import './mixins';
 
 @import './components/Header/variables';
 
@@ -30,6 +31,37 @@ main {
 
 button {
     cursor: pointer;
+}
+
+.form-submit {
+    width: 50%;
+    .header {
+        padding-top: 0;
+        padding-bottom: 0;
+        align-items: baseline;
+        .title {
+            margin: 0;
+            font-weight: normal;
+        }
+        .close {
+            font-size: 2rem;
+        }
+    }
+
+    .main {
+        .message {
+            margin: 0;
+        }
+    }
+
+    &--success {
+        @include submit-modal-theme (green)
+
+    }
+
+    &--error {
+        @include submit-modal-theme (red)
+    }
 }
 
 .form-confirmation {
