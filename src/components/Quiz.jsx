@@ -103,14 +103,16 @@ export default class Quiz extends React.Component {
       <section className={'c-quiz--root'}>
         {this.state.submitSuccess && 
                   <QuizModal
-                    className={'form-submit form-submit--success'}
+                    id={'form-submit-success'}
+                    className={'form-submit'}
                     title={'Success'}
                     onCloseCallback={this.onSuccessAck}
                     message={'Success! You\'ve successfully submitted your quiz'}
                   />}
         {this.state.submitError &&
                   <QuizModal
-                    className={'form-submit form-submit--error'}
+                    id={'form-submit-error'}
+                    className={'form-submit'}
                     title={'Error'}
                     onCloseCallback={this.onErrorAck}
                     message={'Please answer all the questions before submitting the quiz.'}

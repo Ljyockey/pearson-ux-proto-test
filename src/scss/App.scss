@@ -53,50 +53,64 @@ button {
             margin: 0;
         }
     }
+}
 
-    &--success {
-        @include submit-modal-theme (green)
+#form-submit-success {
+    @include submit-modal-theme (green)
 
-    }
+}
 
-    &--error {
-        @include submit-modal-theme (red)
-    }
+#form-submit-error {
+    @include submit-modal-theme (red)
 }
 
 .form-confirmation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: dodgerblue;
+    z-index: 1;
 
-    .header {
-        border-bottom: 2px solid #b2b2b2;
-        background-color: #e6e6e6;
-        align-items: center;
+    &--root {
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 2;
 
-        .close {
+        .header {
+            border-bottom: 2px solid #b2b2b2;
             background-color: #e6e6e6;
-            font-size: 2rem;
-        }
-    }
+            align-items: center;
 
-    .message {
-        border-bottom: 2px solid #d5d5d5;
-        padding: 15px;
-    }
-
-    .action-items {
-        button {
-            font-size: 20px;
-            padding: 5px 10px;
-
+            .close {
+                background-color: #e6e6e6;
+                font-size: 2rem;
+            }
         }
 
-        .cancel {
-            background-color: #d9d9d9;
-            color: #727272;
+        .message {
+            border-bottom: 2px solid #d5d5d5;
+            padding: 15px;
         }
 
-        .confirm {
-            background-color: $pearson-green;
-            color: #fff;
+        .action-items {
+            button {
+                font-size: 20px;
+                padding: 5px 10px;
+
+            }
+
+            .cancel {
+                background-color: #d9d9d9;
+                color: #727272;
+            }
+
+            .confirm {
+                background-color: $pearson-green;
+                color: #fff;
+            }
         }
     }
 
