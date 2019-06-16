@@ -1,0 +1,14 @@
+.c-quizaccordion--root {
+  position: relative;
+
+  .back {
+    font-size: 16px;
+    background-color: $pearson-green;
+    color: #fff;
+    padding: 5px 15px;
+    font-size: 18px;
+    margin-top: 25px;
+    position: absolute;
+    right: 0;
+  }
+}

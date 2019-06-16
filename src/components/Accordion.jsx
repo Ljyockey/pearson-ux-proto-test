@@ -75,7 +75,7 @@ export default class Accordion extends React.Component {
               id={`accordion-header-${i}`}
               className={'accordion-header'}
             >
-              <span className={`triangle-bullet${this.state.openIndex === i ? ' triangle-bullet--expanded' : ''}`}>{String.fromCharCode(8227)}</span> Question {i+1} <span className={'time'}> [{this.getVideoTime(q.timeInSeconds)}]</span>
+              <span className={`triangle-bullet${this.state.openIndex === i ? ' triangle-bullet--expanded' : ''}`}>{String.fromCharCode(8227)}</span>&nbsp; Question {i+1} <span className={'time'}>&nbsp; [{this.getVideoTime(q.timeInSeconds)}]</span>
               <span className={`feedback feedback--${q.correctAnswerIndex === this.props.answers[i] ? 'correct' : 'incorrect'}`}>{q.correctAnswerIndex === this.props.answers[i] ? String.fromCharCode(10003) : String.fromCharCode(10008)}</span>
             </button>
           </h3>

@@ -1,7 +1,7 @@
 import React from 'react';
 import QuizForm from './QuizForm';
 import Dropdown from './Dropdown';
-import Accordion from './Accordion';
+import QuizAccordion from './QuizAccordion';
 
 export default class Quiz extends React.Component {
   constructor(props) {
@@ -72,7 +72,7 @@ export default class Quiz extends React.Component {
         <div className={'quiz-flex-container'}>
           <video onPlaying={this.onVideoPlaying} controls src={this.props.videoSrc}></video>
           {this.state.hasQuizFinished
-            ? <Accordion questions={this.props.questions} answers={this.state.answerIndexes} />
+            ? <QuizAccordion onButtonClick={e => e.preventDefault()} questions={this.props.questions} answers={this.state.answerIndexes} />
             : <QuizForm
               onFormSubmit={this.onFormSubmit}
               currentQuestion={this.props.questions[this.state.currentQuestionIndex]}
