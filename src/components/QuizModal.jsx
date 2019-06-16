@@ -15,10 +15,12 @@ export default class QuizModal extends React.Component {
 
   componentWillUnmount () {
     if (this.props.hasFocus) this.props.originElement.focus();
+    document.removeEventListener('click', this.onClick);
+    document.removeEventListener('keydown', this.onKeydown);
   }
 
   onClick (event) {
-    if (event.target !== this.ref) {
+    if (!this.ref.contains(event.target)) {
       this.props.onCloseCallback();
     }
   }
