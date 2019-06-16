@@ -4,11 +4,17 @@ export default class QuizForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAnswerSelected: false
+      isAnswerSelected: !!this.props.selectedAnswerIndex
     };
 
     this.onRadioChange = this.onRadioChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.selectedAnswerIndex !== this.props.selectedAnswerIndex) {
+      this.setState({isAnswerSelected: !!this.props.selectedAnswerIndex});
+    }
   }
 
   getVideoTime (timeInSeconds) {
@@ -17,22 +23,23 @@ export default class QuizForm extends React.Component {
     return minutes + ':' + seconds;
   }
 
-  onRadioChange (event) {
+  onRadioChange () {
     if (!this.state.isAnswerSelected) {
       this.setState({isAnswerSelected: true});
     }
+    this.props.onRadioChange();
   }
 
   onFormSubmit (event) {
     event.preventDefault();
     this.setState({
-      isAnswerSelected: false
+      isAnswerSelected: this.props.isLast || this.props.selectedAnswerIndex
     });
     this.props.onFormSubmit(event);
   }
 
   render () {
-    const {currentQuestion, buttonText, questionNumber} = this.props;
+    const {currentQuestion, buttonText, questionNumber, selectedAnswerIndex} = this.props;
     if (currentQuestion) {
       return (
         <form className={'c-quizform--root'} onSubmit={this.onFormSubmit}>
@@ -43,22 +50,22 @@ export default class QuizForm extends React.Component {
 
             <div className={'answer-options'}>
               <label htmlFor="0">
-                <input onChange={this.onRadioChange} type="radio" id="0" name="quiz-option" required />
+                <input onChange={this.onRadioChange} type="radio" id="0" name="quiz-option" checked={selectedAnswerIndex === 0} required />
                 {currentQuestion.options[0]}
               </label>
 
               <label htmlFor="1">
-                <input onChange={this.onRadioChange} type="radio" id="1" name="quiz-option" />
+                <input onChange={this.onRadioChange} type="radio" id="1" name="quiz-option" checked={selectedAnswerIndex === 1} />
                 {currentQuestion.options[1]}
               </label>
 
               <label htmlFor="2">
-                <input onChange={this.onRadioChange} type="radio" id="2" name="quiz-option" />
+                <input onChange={this.onRadioChange} type="radio" id="2" name="quiz-option" checked={selectedAnswerIndex === 2} />
                 {currentQuestion.options[2]}
               </label>
 
               <label htmlFor="3">
-                <input onChange={this.onRadioChange} type="radio" id="3" name="quiz-option" />
+                <input onChange={this.onRadioChange} type="radio" id="3" name="quiz-option" checked={selectedAnswerIndex === 3} />
                 {currentQuestion.options[3]}
               </label>
             </div>

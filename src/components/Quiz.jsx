@@ -16,6 +16,7 @@ export default class Quiz extends React.Component {
 
     this.onVideoPlaying = this.onVideoPlaying.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onRadioChange = this.onRadioChange.bind(this);
     this.onQuestionChange = this.onQuestionChange.bind(this);
     this.onSubmitConfirmation = this.onSubmitConfirmation.bind(this);
     this.onSubmitCancelation = this.onSubmitCancelation.bind(this);
@@ -26,8 +27,18 @@ export default class Quiz extends React.Component {
   onFormSubmit () {
     const isLastQuestion = this.state.currentQuestionIndex === this.props.questions.length - 1;
     const targetInput = document.querySelector('input:checked');
-    const selectedAnswerIndex = parseInt(targetInput.id);
     if (!isLastQuestion) targetInput.checked = false;
+    if (isLastQuestion) {
+      this.setState({isConfirmingSubmission: true});
+    } else this.setState({
+      currentQuestionIndex: this.state.currentQuestionIndex + 1
+    });
+
+  }
+
+  onRadioChange () {
+    const targetInput = document.querySelector('input:checked');
+    const selectedAnswerIndex = parseInt(targetInput.id);
 
     const answerIndexes = this.state.answerIndexes;
     this.setState({
@@ -36,14 +47,7 @@ export default class Quiz extends React.Component {
         selectedAnswerIndex,
         ...answerIndexes.slice(this.state.currentQuestionIndex + 1)
       ]
-    }, () => {
-      if (isLastQuestion) {
-        this.setState({isConfirmingSubmission: true});
-      } else this.setState({
-        currentQuestionIndex: this.state.currentQuestionIndex + 1
-      });
     });
-
   }
 
   onSubmitCancelation () {
@@ -142,6 +146,9 @@ export default class Quiz extends React.Component {
           {this.state.hasQuizFinished
             ? <QuizAccordion onButtonClick={e => e.preventDefault()} questions={this.props.questions} answers={this.state.answerIndexes} />
             : <QuizForm
+              onRadioChange={this.onRadioChange}
+              selectedAnswerIndex={this.state.answerIndexes[this.state.currentQuestionIndex]}
+              isLast={this.state.currentQuestionIndex === this.props.questions.length - 1}
               onFormSubmit={this.onFormSubmit}
               currentQuestion={this.props.questions[this.state.currentQuestionIndex]}
               questionNumber={this.state.currentQuestionIndex ? this.state.currentQuestionIndex + 1 : null}
