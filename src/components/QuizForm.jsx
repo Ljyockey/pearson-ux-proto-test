@@ -13,7 +13,7 @@ export default class QuizForm extends React.Component {
 
   componentDidUpdate (prevProps) {
     if (prevProps.selectedAnswerIndex !== this.props.selectedAnswerIndex) {
-      this.setState({isAnswerSelected: !!this.props.selectedAnswerIndex});
+      this.setState({isAnswerSelected: !!this.props.selectedAnswerIndex || this.props.selectedAnswerIndex === 0});
     }
   }
 
@@ -33,7 +33,7 @@ export default class QuizForm extends React.Component {
   onFormSubmit (event) {
     event.preventDefault();
     this.setState({
-      isAnswerSelected: this.props.isLast || this.props.selectedAnswerIndex
+      isAnswerSelected: this.props.isLast || !!this.props.selectedAnswerIndex || this.props.selectedAnswerIndex === 0
     });
     this.props.onFormSubmit(event);
   }

@@ -57,7 +57,7 @@ export default class Quiz extends React.Component {
   }
 
   onSubmitConfirmation () {
-    const isComplete = this.state.answerIndexes.filter(Boolean).length === this.props.questions.length;
+    const isComplete = this.state.answerIndexes.filter(a => Boolean(a) || a === 0).length === this.props.questions.length;
 
     this.setState({
       isConfirmingSubmission: false,
