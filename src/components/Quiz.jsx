@@ -2,6 +2,7 @@ import React from 'react';
 import QuizForm from './QuizForm';
 import Dropdown from './Dropdown';
 import QuizAccordion from './QuizAccordion';
+import QuizModal from './QuizModal';
 
 export default class Quiz extends React.Component {
   constructor(props) {
@@ -16,12 +17,17 @@ export default class Quiz extends React.Component {
     this.onVideoPlaying = this.onVideoPlaying.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onQuestionChange = this.onQuestionChange.bind(this);
+    this.onSubmitConfirmation = this.onSubmitConfirmation.bind(this);
+    this.onSubmitCancelation = this.onSubmitCancelation.bind(this);
+    this.onSuccessAck = this.onSuccessAck.bind(this);
+    this.onErrorAck = this.onErrorAck.bind(this);
   }
 
-  onFormSubmit (event) {
-    const targetInput = event.currentTarget.querySelector('input:checked');
+  onFormSubmit () {
+    const isLastQuestion = this.state.currentQuestionIndex === this.props.questions.length - 1;
+    const targetInput = document.querySelector('input:checked');
     const selectedAnswerIndex = parseInt(targetInput.id);
-    targetInput.checked = false;
+    if (!isLastQuestion) targetInput.checked = false;
 
     const answerIndexes = this.state.answerIndexes;
     this.setState({
@@ -31,9 +37,8 @@ export default class Quiz extends React.Component {
         ...answerIndexes.slice(this.state.currentQuestionIndex + 1)
       ]
     }, () => {
-      if (this.state.currentQuestionIndex === this.props.questions.length - 1) {
-        this.setState({hasQuizFinished: true});
-        this.props.onQuizCompletion(this.state.answerIndexes);
+      if (isLastQuestion) {
+        this.setState({isConfirmingSubmission: true});
       } else this.setState({
         currentQuestionIndex: this.state.currentQuestionIndex + 1
       });
@@ -41,7 +46,26 @@ export default class Quiz extends React.Component {
 
   }
 
-  onVideoPlaying (event) {
+  onSubmitCancelation () {
+    this.setState({
+      isConfirmingSubmission: false
+    });
+  }
+
+  onSubmitConfirmation () {
+    const isComplete = this.state.answerIndexes.filter(Boolean).length === this.props.questions.length;
+
+    this.setState({
+      isConfirmingSubmission: false,
+      submitSuccess: isComplete,
+      submitError: !isComplete,
+      hasQuizFinished: isComplete
+    });
+
+    if (isComplete) this.props.onQuizCompletion(this.state.answerIndexes);
+  }
+
+  onVideoPlaying () {
     if (!this.state.currentQuestionIndex) {
       this.setState({
         currentQuestionIndex: 0,
@@ -51,14 +75,58 @@ export default class Quiz extends React.Component {
   }
 
   onQuestionChange (index) {
+    const targetInput = document.querySelector('input:checked');
+    if (targetInput) targetInput.checked = false;
     this.setState({
       currentQuestionIndex: index
+    });
+  }
+
+  onSuccessAck () {
+    this.setState({
+      submitSuccess: false
+    });
+  }
+
+  onErrorAck () {
+    this.setState({
+      submitError: false
     });
   }
 
   render () {
     return (
       <section className={'c-quiz--root'}>
+        {this.state.submitSuccess && 
+                  <QuizModal
+                    className={'form-submit form-submit--success'}
+                    title={'Success'}
+                    onCloseCallback={this.onSuccessAck}
+                    message={'Success! You\'ve successfully submitted your quiz'}
+                  />}
+        {this.state.submitError &&
+                  <QuizModal
+                    className={'form-submit form-submit--error'}
+                    title={'Error'}
+                    onCloseCallback={this.onErrorAck}
+                    message={'Please answer all the questions before submitting the quiz.'}
+                  />}
+        {this.state.isConfirmingSubmission && 
+                  <QuizModal
+                    className={'form-confirmation'}
+                    title={'Submit Quiz'}
+                    onCloseCallback={this.onSubmitCancelation}
+                    message={'Are you sure you\'re ready to submit? You won\'t be able to change your answers.'}
+                    cancelButton={{
+                      onClickCallback: this.onSubmitCancelation,
+                      text: 'Review'
+                    }}
+                    confirmButton={{
+                      onClickCallback: this.onSubmitConfirmation,
+                      text: 'Submit Quiz'
+                    }}
+                    hasAutoFocus
+                  />}
         {this.state.hasQuizStarted && !this.state.hasQuizFinished &&
                     <div className={'quiz-dropdown-container'}>
                       <Dropdown

@@ -3,7 +3,6 @@ import Header from './components/Header';
 import QuizInfo from './components/QuizInfo';
 import QuizResults from './components/QuizResults';
 import Quiz from './components/Quiz';
-import QuizModal from './components/QuizModal';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -121,48 +120,6 @@ export default class App extends React.Component {
               description={description}
             />
           }
-          <QuizModal
-            className={'form-submit form-submit--error'}
-            title={'Error'}
-            onCloseCallback={e => {
-              e.preventDefault();
-              console.log('error onCloseCallback');
-            }}
-            message={'Please answer all the questions before submitting the quiz.'}
-          />
-          <QuizModal
-            className={'form-submit form-submit--success'}
-            title={'Success'}
-            onCloseCallback={e => {
-              e.preventDefault();
-              console.log('success onCloseCallback');
-            }}
-            message={'Success! You\'ve successfully submitted your quiz'}
-          />
-          <QuizModal
-            className={'form-confirmation'}
-            title={'Submit Quiz'}
-            onCloseCallback={e => {
-              e.preventDefault();
-              console.log('confirmation onCloseCallback');
-            }}
-            message={'Are you sure you\'re ready to submit? You won\'t be able to change your answers.'}
-            cancelButton={{
-              onClickCallback: e => {
-                e.preventDefault();
-                console.log('cancelButton onClickCallback');
-              },
-              text: 'Review'
-            }}
-            confirmButton={{
-              onClickCallback: e => {
-                e.preventDefault();
-                console.log('confirmButton onClickCallback');
-              },
-              text: 'Submit Quiz'
-            }}
-            hasAutoFocus
-          />
           <Quiz videoSrc={videoSrc} questions={questions} onQuizCompletion={this.onQuizCompletion}  />
         </main>
       </section>
