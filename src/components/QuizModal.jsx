@@ -1,8 +1,32 @@
 import React from 'react';
 
 export default class QuizModal extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.onClick = this.onClick.bind(this);
+    this.onKeydown = this.onKeydown.bind(this);
+  }
   componentDidMount () {
-    document.getElementById('close-modal').focus();
+    if (this.props.hasFocus) document.getElementById('close-modal').focus();
+    document.addEventListener('click', this.onClick);
+    document.addEventListener('keydown', this.onKeydown);
+  }
+
+  componentWillUnmount () {
+    if (this.props.hasFocus) this.props.originElement.focus();
+  }
+
+  onClick (event) {
+    if (event.target !== this.ref) {
+      this.props.onCloseCallback();
+    }
+  }
+
+  onKeydown (event) {
+    if (event.keyCode === 27) {
+      this.props.onCloseCallback();
+    }
   }
 
   render () {
@@ -12,12 +36,11 @@ export default class QuizModal extends React.Component {
       onCloseCallback,
       message,
       cancelButton,
-      confirmButton,
-      hasAutoFocus
+      confirmButton
     } = this.props;
 
     return (
-      <section className={`c-quizmodal--root ${className || ''}`} role={'region'} autoFocus={!!hasAutoFocus}>
+      <section ref={r => this.ref = r} className={`c-quizmodal--root ${className || ''}`} role={'region'}>
         <div className={'header'}>
           <h4 className={'title'}>{title}</h4>
           <button id={'close-modal'} className={'close'} onClick={onCloseCallback}>{String.fromCharCode(10007)}</button>

@@ -129,7 +129,8 @@ export default class Quiz extends React.Component {
                       onClickCallback: this.onSubmitConfirmation,
                       text: 'Submit Quiz'
                     }}
-                    hasAutoFocus
+                    originElement={document.getElementById('form-submit')}
+                    hasFocus
                   />}
         {this.state.hasQuizStarted && !this.state.hasQuizFinished &&
                     <div className={'quiz-dropdown-container'}>
