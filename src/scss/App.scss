@@ -8,6 +8,7 @@
 @import './components/Quiz/nonvariables';
 @import './components/QuizAccordion/nonvariables';
 @import './components/QuizForm/nonvariables';
+@import './components/QuizModal/nonvariables';
 @import './components/QuizResults/nonvariables';
 @import './components/QuizTitle/nonvariables';
 @import './components/QuizDescription/nonvariables';
@@ -25,4 +26,46 @@ main {
 .justify-flex-end {
     display: flex;
     justify-content: flex-end;
+}
+
+button {
+    cursor: pointer;
+}
+
+.form-confirmation {
+
+    .header {
+        border-bottom: 2px solid #b2b2b2;
+        background-color: #e6e6e6;
+        align-items: center;
+
+        .close {
+            background-color: #e6e6e6;
+            font-size: 2rem;
+        }
+    }
+
+    .message {
+        border-bottom: 2px solid #d5d5d5;
+        padding: 15px;
+    }
+
+    .action-items {
+        button {
+            font-size: 20px;
+            padding: 5px 10px;
+
+        }
+
+        .cancel {
+            background-color: #d9d9d9;
+            color: #727272;
+        }
+
+        .confirm {
+            background-color: $pearson-green;
+            color: #fff;
+        }
+    }
+
 }
