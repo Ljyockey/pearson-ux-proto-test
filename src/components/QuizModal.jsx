@@ -6,17 +6,32 @@ export default class QuizModal extends React.Component {
     
     this.onClick = this.onClick.bind(this);
     this.onKeydown = this.onKeydown.bind(this);
+    this.toggleElementsFromTabOrder = this.toggleElementsFromTabOrder.bind(this);
   }
   componentDidMount () {
     if (this.props.hasFocus) document.getElementById('close-modal').focus();
     document.addEventListener('click', this.onClick);
     document.addEventListener('keydown', this.onKeydown);
+
+    this.toggleElementsFromTabOrder();
+
+  }
+
+  toggleElementsFromTabOrder () {
+    const focusableElements = document.querySelectorAll('a:not([disabled]), button:not([disabled]), video, input:not([disabled]), [tabindex]:not([disabled]):not([tabindex="-1"])');
+    for (let i=0; i < focusableElements.length; i++) {
+      if (!this.ref.contains(focusableElements[i])) {
+        focusableElements[i].tabIndex = focusableElements[i].tabIndex === -1 ? 0 : -1;
+      }
+    }
   }
 
   componentWillUnmount () {
     if (this.props.hasFocus) this.props.originElement.focus();
     document.removeEventListener('click', this.onClick);
     document.removeEventListener('keydown', this.onKeydown);
+
+    this.toggleElementsFromTabOrder();
   }
 
   onClick (event) {
