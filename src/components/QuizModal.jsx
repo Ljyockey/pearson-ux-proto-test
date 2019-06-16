@@ -9,12 +9,12 @@ export default class QuizModal extends React.Component {
     this.toggleElementsFromTabOrder = this.toggleElementsFromTabOrder.bind(this);
   }
   componentDidMount () {
-    if (this.props.hasFocus) document.getElementById('close-modal').focus();
+    if (this.props.hasFocus) {
+      document.getElementById('close-modal').focus();
+      this.toggleElementsFromTabOrder();
+    }
     document.addEventListener('click', this.onClick);
     document.addEventListener('keydown', this.onKeydown);
-
-    this.toggleElementsFromTabOrder();
-
   }
 
   toggleElementsFromTabOrder () {
@@ -27,11 +27,12 @@ export default class QuizModal extends React.Component {
   }
 
   componentWillUnmount () {
-    if (this.props.hasFocus) this.props.originElement.focus();
+    if (this.props.hasFocus) {
+      this.props.originElement.focus();
+      this.toggleElementsFromTabOrder();
+    }
     document.removeEventListener('click', this.onClick);
     document.removeEventListener('keydown', this.onKeydown);
-
-    this.toggleElementsFromTabOrder();
   }
 
   onClick (event) {
