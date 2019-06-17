@@ -13,7 +13,7 @@ export default function QuizModalController (props) {
   } = props;
 
   return (
-    <div className={'c-quiz-controller--root'}>
+    <div className={'c-quizmodalcontroller--root'}>
       {isSubmitSuccess && 
         <QuizModal
           id={'form-submit-success'}

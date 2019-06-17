@@ -1,0 +1,95 @@
+.c-quizmodalcontroller--root {
+  .form-submit-modal {
+    width: 50%;
+    .header {
+        padding-top: 0;
+        padding-bottom: 0;
+        align-items: baseline;
+        .title {
+            margin: 0;
+            font-weight: normal;
+        }
+        .close {
+            font-size: 2rem;
+        }
+    }
+
+    .main {
+        .message {
+            margin: 0;
+        }
+    }
+
+    &--root {
+        position: absolute;
+    }
+}
+
+#form-submit-success {
+    @include submit-modal-theme (green);
+    top: 10px;
+    left: 60px;
+
+}
+
+#form-submit-error {
+    @include submit-modal-theme (#B30000);
+    top: 0;
+    left: 70px;
+    width: 60%;
+}
+
+.form-confirmation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
+    ),
+    transparent;
+    z-index: 1;
+
+    &--root {
+        position: absolute;
+        top: 20%;
+        left: 30%;
+        z-index: 2;
+
+        .header {
+            border-bottom: 2px solid #b2b2b2;
+            background-color: #e6e6e6;
+            align-items: center;
+
+            .close {
+                background-color: #e6e6e6;
+                font-size: 2rem;
+            }
+        }
+
+        .message {
+            border-bottom: 2px solid #d5d5d5;
+            padding: 15px;
+        }
+
+        .action-items {
+            button {
+                font-size: 20px;
+                padding: 5px 10px;
+
+            }
+
+            .cancel {
+                background-color: #d9d9d9;
+            }
+
+            .confirm {
+                background-color: $pearson-green;
+                color: #fff;
+            }
+        }
+    }
+}
+}
