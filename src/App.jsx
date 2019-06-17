@@ -3,6 +3,7 @@ import Header from './components/Header';
 import QuizInfo from './components/QuizInfo';
 import QuizResults from './components/QuizResults';
 import Quiz from './components/Quiz';
+import {isTruthyOrZero} from './javascript/helpers';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -87,7 +88,7 @@ export default class App extends React.Component {
   }
 
   onQuizCompletion (answers) {
-    const answeredQuestions = answers.filter(a => Boolean(a) || a === 0).length;
+    const answeredQuestions = answers.filter(isTruthyOrZero).length;
     if (answeredQuestions === this.state.data.questions.length) {
       this.setState({isQuizCompleted: true, correctAnswers: this.getCorrectAnswers(answers)});
     }

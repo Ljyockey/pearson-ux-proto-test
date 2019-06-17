@@ -1,4 +1,5 @@
 import React from 'react';
+import {isTruthyOrZero} from '../javascript/helpers';
 
 export default class Dropdown extends React.Component {
   constructor(props) {
@@ -74,7 +75,7 @@ export default class Dropdown extends React.Component {
       const result = [];
       for (let i=0; i < answerIndexes.length; i++) {
         const answer = answerIndexes[i];
-        const isComplete = !!answer || answer === 0;
+        const isComplete = isTruthyOrZero(answer);
         result.push(
           <li
             key={i}

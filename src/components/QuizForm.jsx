@@ -1,4 +1,5 @@
 import React from 'react';
+import {isTruthyOrZero, getVideoTime} from '../javascript/helpers';
 
 export default class QuizForm extends React.Component {
   constructor(props) {
@@ -13,14 +14,8 @@ export default class QuizForm extends React.Component {
 
   componentDidUpdate (prevProps) {
     if (prevProps.selectedAnswerIndex !== this.props.selectedAnswerIndex) {
-      this.setState({isAnswerSelected: !!this.props.selectedAnswerIndex || this.props.selectedAnswerIndex === 0});
+      this.setState({isAnswerSelected: isTruthyOrZero(this.props.selectedAnswerIndex)});
     }
-  }
-
-  getVideoTime (timeInSeconds) {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = ('0' + (timeInSeconds % 60)).slice(-2);
-    return minutes + ':' + seconds;
   }
 
   onRadioChange () {
@@ -33,7 +28,7 @@ export default class QuizForm extends React.Component {
   onFormSubmit (event) {
     event.preventDefault();
     this.setState({
-      isAnswerSelected: this.props.isLast || !!this.props.selectedAnswerIndex || this.props.selectedAnswerIndex === 0
+      isAnswerSelected: this.props.isLast || isTruthyOrZero(this.props.selectedAnswerIndex) 
     });
     this.props.onFormSubmit(event);
   }
@@ -46,7 +41,7 @@ export default class QuizForm extends React.Component {
           <fieldset>
             <legend>{currentQuestion.question}</legend>
 
-            <p>Question {questionNumber}[{this.getVideoTime(currentQuestion.timeInSeconds)}]</p>
+            <p>Question {questionNumber}[{getVideoTime(currentQuestion.timeInSeconds)}]</p>
 
             <div className={'answer-options'}>
               <label htmlFor="0">

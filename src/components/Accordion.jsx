@@ -1,4 +1,5 @@
 import React from 'react';
+import {getVideoTime} from '../javascript/helpers';
 
 export default class Accordion extends React.Component {
   constructor (props) {
@@ -11,11 +12,6 @@ export default class Accordion extends React.Component {
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
-  getVideoTime (timeInSeconds) {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = ('0' + (timeInSeconds % 60)).slice(-2);
-    return minutes + ':' + seconds;
-  }
 
   onClick (event, index) {
     event.preventDefault();
@@ -74,7 +70,7 @@ export default class Accordion extends React.Component {
               id={`accordion-header-${i}`}
               className={'accordion-header'}
             >
-              <span className={`triangle-bullet${this.state.openIndex === i ? ' triangle-bullet--expanded' : ''}`}>{String.fromCharCode(8227)}</span>&nbsp; Question {i+1} <span className={'time'}>&nbsp; [{this.getVideoTime(q.timeInSeconds)}]</span>
+              <span className={`triangle-bullet${this.state.openIndex === i ? ' triangle-bullet--expanded' : ''}`}>{String.fromCharCode(8227)}</span>&nbsp; Question {i+1} <span className={'time'}>&nbsp; [{getVideoTime(q.timeInSeconds)}]</span>
               <span className={`feedback feedback--${q.correctAnswerIndex === this.props.answers[i] ? 'correct' : 'incorrect'}`}>{q.correctAnswerIndex === this.props.answers[i] ? String.fromCharCode(10003) : String.fromCharCode(10008)}</span>
             </button>
           </h3>

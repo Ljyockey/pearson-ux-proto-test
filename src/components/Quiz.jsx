@@ -3,6 +3,7 @@ import QuizForm from './QuizForm';
 import Dropdown from './Dropdown';
 import QuizAccordion from './QuizAccordion';
 import QuizModal from './QuizModal';
+import {isTruthyOrZero} from '../javascript/helpers';
 
 export default class Quiz extends React.Component {
   constructor(props) {
@@ -57,7 +58,7 @@ export default class Quiz extends React.Component {
   }
 
   onSubmitConfirmation () {
-    const isComplete = this.state.answerIndexes.filter(a => Boolean(a) || a === 0).length === this.props.questions.length;
+    const isComplete = this.state.answerIndexes.filter(isTruthyOrZero).length === this.props.questions.length;
 
     this.setState({
       isConfirmingSubmission: false,
