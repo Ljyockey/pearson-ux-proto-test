@@ -2,13 +2,16 @@
 - [Live](https://ljyockey.github.io/pearson-ux-proto-test/static/index.html)
 - [Directory](./static)
 
-## Part I - SASS
+## Part II - SASS
 - [Live](https://ljyockey.github.io/pearson-ux-proto-test/sass-mixin-test/index.html)
 - [Directory](./src/sass-mixin-test)
 
 ## Part III - JavaScript
-- [transformNums](./static/javascript/transformNums.js)
-- [makeAList](./static/javascript/makeAList.js)
+- transformNums
+    - [Code] (./static/javascript/transformNums.js)
+- makeAList
+    - [Live](https://ljyockey.github.io/pearson-ux-proto-test/static/index.html#list)
+    - [Code](./static/javascript/makeAList.js)
 
 ## Part IV - Prototyping
 - Train Wreck
