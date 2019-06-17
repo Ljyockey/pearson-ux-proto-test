@@ -1,5 +1,5 @@
 import React from 'react';
-import {isTruthyOrZero} from '../javascript/helpers';
+import {isTruthyOrZero, handleArrowKeyNavigation} from '../javascript/helpers';
 
 export default class Dropdown extends React.Component {
   constructor(props) {
@@ -22,30 +22,7 @@ export default class Dropdown extends React.Component {
   onOpenKeyDown (event) {
     if (event.keyCode === 27) this.toggleOpen();
 
-    if (document.activeElement.className === 'list-item-button') {
-      const options = document.getElementsByClassName('list-item-button');
-      const currentFocusedOptionIndex = parseInt(document.activeElement.id.split('list-item-button-')[1]);
-
-      let targetIndex;
-      switch (event.keyCode) {
-      case 40:
-        targetIndex = (currentFocusedOptionIndex + 1) % options.length;
-        options[targetIndex].focus();
-        break;
-      case 38:
-        targetIndex = currentFocusedOptionIndex === 0 ? options.length-1 : currentFocusedOptionIndex-1;
-        options[targetIndex].focus();
-        break;
-      case 36:
-        options[0].focus();
-        break;
-      case 35:
-        options[options.length-1].focus();
-        break;
-      default:
-        break;
-      }
-    }
+    handleArrowKeyNavigation('list-item-button', event.keyCode);
   }
 
   toggleOpen () {

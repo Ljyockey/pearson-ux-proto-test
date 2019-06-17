@@ -1,5 +1,5 @@
 import React from 'react';
-import {getVideoTime} from '../javascript/helpers';
+import {getVideoTime, handleArrowKeyNavigation} from '../javascript/helpers';
 
 export default class Accordion extends React.Component {
   constructor (props) {
@@ -9,7 +9,6 @@ export default class Accordion extends React.Component {
     };
 
     this.onClick = this.onClick.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
   }
 
 
@@ -21,32 +20,7 @@ export default class Accordion extends React.Component {
   }
 
   onKeyDown (event) {
-    const currentFocusedHeader = document.activeElement;
-
-    if (currentFocusedHeader.id.includes('accordion-header-')) {
-      const headers = document.getElementsByClassName('accordion-header');
-      const currentFocusedHeaderIndex = parseInt(currentFocusedHeader.id.split('accordion-header-')[1]);
-
-      let targetIndex;
-      switch (event.keyCode) {
-      case 40:
-        targetIndex = (currentFocusedHeaderIndex + 1) % headers.length;
-        headers[targetIndex].focus();
-        break;
-      case 38:
-        targetIndex = currentFocusedHeaderIndex === 0 ? headers.length-1 : currentFocusedHeaderIndex-1;
-        headers[targetIndex].focus();
-        break;
-      case 36:
-        headers[0].focus();
-        break;
-      case 35:
-        headers[headers.length-1].focus();
-        break;
-      default:
-        break;
-      }
-    }
+    handleArrowKeyNavigation('accordion-header', event.keyCode);
   }
 
   generateOptionList (options, correctAnswerIndex, userAnswerIndex) {

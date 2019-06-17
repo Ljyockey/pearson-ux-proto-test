@@ -2,7 +2,7 @@ import React from 'react';
 import QuizForm from './QuizForm';
 import Dropdown from './Dropdown';
 import QuizAccordion from './QuizAccordion';
-import QuizModal from './QuizModal';
+import QuizModalController from './QuizModalController';
 import {isTruthyOrZero} from '../javascript/helpers';
 
 export default class Quiz extends React.Component {
@@ -28,13 +28,15 @@ export default class Quiz extends React.Component {
   onFormSubmit () {
     const isLastQuestion = this.state.currentQuestionIndex === this.props.questions.length - 1;
     const targetInput = document.querySelector('input:checked');
-    if (!isLastQuestion) targetInput.checked = false;
+
     if (isLastQuestion) {
       this.setState({isConfirmingSubmission: true});
-    } else this.setState({
-      currentQuestionIndex: this.state.currentQuestionIndex + 1
-    });
-
+    } else {
+      targetInput.checked = false;
+      this.setState({
+        currentQuestionIndex: this.state.currentQuestionIndex + 1
+      });
+    }
   }
 
   onRadioChange () {
@@ -102,39 +104,17 @@ export default class Quiz extends React.Component {
   render () {
     return (
       <section className={'c-quiz--root'}>
-        {this.state.submitSuccess && 
-                  <QuizModal
-                    id={'form-submit-success'}
-                    className={'form-submit-modal'}
-                    title={'Success'}
-                    onCloseCallback={this.onSuccessAck}
-                    message={'Success! You\'ve successfully submitted your quiz.'}
-                  />}
-        {this.state.submitError &&
-                  <QuizModal
-                    id={'form-submit-error'}
-                    className={'form-submit-modal'}
-                    title={'Error'}
-                    onCloseCallback={this.onErrorAck}
-                    message={'Please answer all the questions before submitting the quiz.'}
-                  />}
-        {this.state.isConfirmingSubmission && 
-                  <QuizModal
-                    className={'form-confirmation'}
-                    title={'Submit Quiz'}
-                    onCloseCallback={this.onSubmitCancelation}
-                    message={'Are you sure you\'re ready to submit? You won\'t be able to change your answers.'}
-                    cancelButton={{
-                      onClickCallback: this.onSubmitCancelation,
-                      text: 'Review'
-                    }}
-                    confirmButton={{
-                      onClickCallback: this.onSubmitConfirmation,
-                      text: 'Submit Quiz'
-                    }}
-                    originElement={document.getElementById('form-submit')}
-                    hasFocus
-                  />}
+
+        <QuizModalController
+          isSubmitSuccess={this.state.submitSuccess}
+          onSuccessAck={this.onSuccessAck}
+          isSubmitError={this.state.submitError}
+          onErrorAck={this.onErrorAck}
+          isConfirmingSubmission={this.state.isConfirmingSubmission}
+          onSubmitCancelation={this.onSubmitCancelation}
+          onSubmitConfirmation={this.onSubmitConfirmation}
+        />
+        
         {this.state.hasQuizStarted && !this.state.hasQuizFinished &&
                     <div className={'quiz-dropdown-container'}>
                       <Dropdown
