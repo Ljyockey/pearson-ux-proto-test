@@ -145,7 +145,12 @@ export default class Quiz extends React.Component {
                     </div>
         }
         <div className={'quiz-flex-container'}>
-          <video onPlaying={this.onVideoPlaying} controls src={this.props.videoSrc}></video>
+          <video
+            // TODO: add vtt file for captions
+            // TODO: add vtt file for description
+            onPlaying={this.onVideoPlaying}
+            controls
+            src={this.props.videoSrc} />
           {this.state.hasQuizFinished
             ? <QuizAccordion onButtonClick={e => e.preventDefault()} questions={this.props.questions} answers={this.state.answerIndexes} />
             : <QuizForm

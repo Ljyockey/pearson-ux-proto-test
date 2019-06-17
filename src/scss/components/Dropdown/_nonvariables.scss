@@ -9,6 +9,11 @@
     background-color: #d9d9d9;
     padding: 5px 15px;
     font-size: 16px;
+    display: flex;
+
+    .arrow-bullet {
+      transform: rotate(90deg);
+    }
   }
 
   ol {
@@ -32,8 +37,11 @@
       }
 
       .list-item-span {
-        &--incomplete {
-          color: #d2d2d2;
+        &--complete {
+          &::before {
+            color: green;
+            content: '\2713 ';
+          }
         }
       }
     }

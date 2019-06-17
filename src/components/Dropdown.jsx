@@ -53,7 +53,7 @@ export default class Dropdown extends React.Component {
         result.push(
           <li
             key={i}
-            id={i}
+            id={`dropdown-option-${i}`}
             role={'option'}
           >
             <button onClick={() => this.onQuestionChange(i)} className={'list-item-button'}>
@@ -67,7 +67,7 @@ export default class Dropdown extends React.Component {
 
     return <div className={'c-dropdown--root justify-flex-end'}>
       <button className={'dropdown-heading'} aria-haspopup={'listbox'} onClick={this.toggleOpen}>
-        Question {currentQuestionIndex + 1} of {answerIndexes.length}
+        Question {currentQuestionIndex + 1} of {answerIndexes.length} &nbsp; <span className={'arrow-bullet'}>{String.fromCharCode(8227)}</span>
       </button>
       {this.state.isOpen && <ol id={'list'} role={'listbox'}>{generateListItems()}</ol>}
     </div>;

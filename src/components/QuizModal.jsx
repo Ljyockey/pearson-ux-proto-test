@@ -59,8 +59,8 @@ export default class QuizModal extends React.Component {
     } = this.props;
 
     return (
-      <section className={`c-quizmodal--container ${className || ''}`} role={'region'}>
-        <section id={id} ref={r => this.ref = r} className={`c-quizmodal--root ${className ? `${className}--root` : ''}`} role={'region'}>
+      <section className={`c-quizmodal--container ${className || ''}`}>
+        <section id={id} ref={r => this.ref = r} className={`c-quizmodal--root ${className ? `${className}--root` : ''}`}>
           <div className={'header'}>
             <h4 className={'title'}>{title}</h4>
             <button id={'close-modal'} className={'close'} onClick={onCloseCallback}>{String.fromCharCode(10007)}</button>
