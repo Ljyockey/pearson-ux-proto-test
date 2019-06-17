@@ -8,7 +8,7 @@
 
 ## Part III - JavaScript
 - transformNums
-    - [Code] (./static/javascript/transformNums.js)
+    - [Code](./static/javascript/transformNums.js)
 - makeAList
     - [Live](https://ljyockey.github.io/pearson-ux-proto-test/static/index.html#list)
     - [Code](./static/javascript/makeAList.js)
