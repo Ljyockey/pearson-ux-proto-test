@@ -71,7 +71,6 @@ export default class Accordion extends React.Component {
             <button
               onClick={e => this.onClick(e, i)}
               aria-expanded={this.state.openIndex === i}
-              aria-controls={`accordion-item-${i}`}
               id={`accordion-header-${i}`}
               className={'accordion-header'}
             >

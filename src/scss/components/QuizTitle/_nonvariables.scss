@@ -1,6 +1,14 @@
 .c-quiztitle--root {
     display: flex;
 
+    &:first-child {
+        padding-top: 20px;
+    }
+
+    &>div {
+        margin-bottom: 0;
+    }
+
     &>*:not(:first-child) {
         padding-left: 10px;
         padding-right: 10px;

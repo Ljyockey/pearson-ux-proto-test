@@ -13,7 +13,7 @@ export default function QuizResults (props) {
           <circle className="correct" cx="21" cy="21" r="15.91549430918954" fill="transparent" strokeWidth="3" strokeDasharray={`${score} ${100 - score}`} strokeDashoffset="0"></circle>
           <text aria-describedby={'score-description'} x="21" y="25" fontSize="smaller" textAnchor="middle">{score + '%'}</text>
         </svg>
-        <p id="score-description">Your quiz score!</p>
+        <h1 id="score-description">Your quiz score!</h1>
       </div>
       <ul>
         <li>{totalQuestions} Questions</li>

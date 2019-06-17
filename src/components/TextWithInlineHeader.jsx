@@ -6,8 +6,7 @@ export default function TextWithInlineHeader (props) {
 
   return (
     <div className="c-text-with-inline-header--root">
-      <Type>{`${heading}:`}</Type>
-      <p>{innerText}</p>
+      <Type>{`${heading}:`}&nbsp;<p>{innerText}</p></Type>
     </div>
   );
 }
